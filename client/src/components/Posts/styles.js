@@ -2,16 +2,18 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export const useStyles = makeStyles((theme) => ({
   wrapper: {
-    padding: '2rem',
+    marginBottom: '2rem',
   },
-  heroWrapper: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+
+  card: {
+    maxWidth: 345,
+    backgroundColor: theme.palette.primary.main,
   },
-  hero: {
-    marginTop: '3rem',
-    width: '70%',
-    height: '80%',
+  avatar: {
+    backgroundColor: '#F8485E',
+  },
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
   },
 }))
