@@ -11,7 +11,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   hero: {
     marginTop: '3rem',
-    width: '70%',
-    height: '80%',
+    width: '50%',
+    height: '50%',
   },
 }))

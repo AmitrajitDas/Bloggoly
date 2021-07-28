@@ -24,7 +24,7 @@ const Navbar = () => {
           <Typography variant='h4' className={classes.title}>
             {' '}
           </Typography>
-          <Link to='/home' className={classes.whiteLink}>
+          <Link to='/' className={classes.whiteLink}>
             <Button color='inherit'>Home</Button>
           </Link>
           <Link to='/about' className={classes.whiteLink}>
