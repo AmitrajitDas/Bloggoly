@@ -74,7 +74,7 @@ const Sidebar = () => {
           </Grid>
         </Grid>
       </Paper>
-      <Paper className={classes.aboutWrapper}>
+      {/* <Paper className={classes.aboutWrapper}>
         <Typography variant='h6' className={classes.aboutHeader}>
           About Us
         </Typography>
@@ -92,7 +92,7 @@ const Sidebar = () => {
           arcu. Suspendisse quis enim magna. Nullam dignissim turpis commodo
           feugiat dapibus. Vivamus eleifend mollis lectus at gravida.
         </Typography>
-      </Paper>
+      </Paper> */}
     </div>
   )
 }

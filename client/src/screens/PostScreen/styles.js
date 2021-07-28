@@ -1,20 +1,56 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 export const useStyles = makeStyles((theme) => ({
-  wrapper: {
+  aboutWrapper: {
+    backgroundColor: theme.palette.primary.main,
+    paddingBottom: '3rem',
+    borderRadius: '1rem',
+    marginTop: '2rem',
     marginBottom: '2rem',
   },
 
-  card: {
-    maxWidth: 345,
+  aboutHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '2rem',
+  },
+
+  about: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '2rem',
+  },
+
+  profileWrapper: {
+    padding: '2rem',
+  },
+
+  wrapper: {
+    marginTop: '3rem',
+    paddingTop: '2rem',
+    marginBottom: '2rem',
+  },
+
+  categoriesWrapper: {
     backgroundColor: theme.palette.primary.main,
+    paddingBottom: '3rem',
     borderRadius: '1rem',
   },
-  avatar: {
-    backgroundColor: '#F8485E',
+
+  categoriesHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '2rem',
   },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
+
+  categories: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+
+  tags: { cursor: 'pointer' },
 }))
