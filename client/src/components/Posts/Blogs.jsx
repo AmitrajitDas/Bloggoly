@@ -15,7 +15,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import ShareIcon from '@material-ui/icons/Share'
 import { useStyles } from './styles'
 
-const Posts = () => {
+const Blogs = () => {
   const classes = useStyles()
 
   // const [raised, setRaised] = useState(false)
@@ -266,4 +266,4 @@ const Posts = () => {
   )
 }
 
-export default Posts
+export default Blogs
