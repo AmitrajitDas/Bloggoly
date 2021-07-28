@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static'>
+      <AppBar position='fixed'>
         <Toolbar>
           <Link to='/' style={{ textDecoration: 'none', color: 'white' }}>
             <Typography variant='h4' className={classes.title}>
@@ -32,6 +32,9 @@ const Navbar = () => {
           </Link>
           <Link to='/contact' className={classes.whiteLink}>
             <Button color='inherit'>Contact Us</Button>
+          </Link>
+          <Link to='/login' className={classes.whiteLink}>
+            <Button color='inherit'>Login</Button>
           </Link>
           <Link to='/create' className={classes.blackLink}>
             <Button variant='contained' color='secondary'>

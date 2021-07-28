@@ -28,7 +28,7 @@ const Posts = () => {
                   A
                 </Avatar>
               }
-              title='Lorem ipsum dolor sit amet'
+              title='John Doe'
               subheader='March 31, 2021'
             />
             <CardMedia
@@ -37,10 +37,11 @@ const Posts = () => {
               title='Paella dish'
             />
             <CardContent>
-              <Typography variant='body2' color='textSecondary' component='p'>
-                This impressive paella is a perfect party dish and a fun meal to
-                cook together with your guests. Add 1 cup of frozen peas along
-                with the mussels, if you like.
+              <Typography variant='h6'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </Typography>
+              <Typography variant='subtitle2' color='textSecondary'>
+                tags
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -61,7 +62,7 @@ const Posts = () => {
                   A
                 </Avatar>
               }
-              title='Lorem ipsum dolor sit amet'
+              title='John Doe'
               subheader='March 31, 2021'
             />
             <CardMedia
@@ -70,10 +71,11 @@ const Posts = () => {
               title='Paella dish'
             />
             <CardContent>
-              <Typography variant='body2' color='textSecondary' component='p'>
-                This impressive paella is a perfect party dish and a fun meal to
-                cook together with your guests. Add 1 cup of frozen peas along
-                with the mussels, if you like.
+              <Typography variant='h6'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </Typography>
+              <Typography variant='subtitle2' color='textSecondary'>
+                tags
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -94,7 +96,7 @@ const Posts = () => {
                   A
                 </Avatar>
               }
-              title='Lorem ipsum dolor sit amet'
+              title='John Doe'
               subheader='March 31, 2021'
             />
             <CardMedia
@@ -103,10 +105,11 @@ const Posts = () => {
               title='Paella dish'
             />
             <CardContent>
-              <Typography variant='body2' color='textSecondary' component='p'>
-                This impressive paella is a perfect party dish and a fun meal to
-                cook together with your guests. Add 1 cup of frozen peas along
-                with the mussels, if you like.
+              <Typography variant='h6'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </Typography>
+              <Typography variant='subtitle2' color='textSecondary'>
+                tags
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -127,7 +130,7 @@ const Posts = () => {
                   A
                 </Avatar>
               }
-              title='Lorem ipsum dolor sit amet'
+              title='John Doe'
               subheader='March 31, 2021'
             />
             <CardMedia
@@ -136,10 +139,11 @@ const Posts = () => {
               title='Paella dish'
             />
             <CardContent>
-              <Typography variant='body2' color='textSecondary' component='p'>
-                This impressive paella is a perfect party dish and a fun meal to
-                cook together with your guests. Add 1 cup of frozen peas along
-                with the mussels, if you like.
+              <Typography variant='h6'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </Typography>
+              <Typography variant='subtitle2' color='textSecondary'>
+                tags
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -160,7 +164,7 @@ const Posts = () => {
                   A
                 </Avatar>
               }
-              title='Lorem ipsum dolor sit amet'
+              title='John Doe'
               subheader='March 31, 2021'
             />
             <CardMedia
@@ -169,10 +173,11 @@ const Posts = () => {
               title='Paella dish'
             />
             <CardContent>
-              <Typography variant='body2' color='textSecondary' component='p'>
-                This impressive paella is a perfect party dish and a fun meal to
-                cook together with your guests. Add 1 cup of frozen peas along
-                with the mussels, if you like.
+              <Typography variant='h6'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </Typography>
+              <Typography variant='subtitle2' color='textSecondary'>
+                tags
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -193,7 +198,7 @@ const Posts = () => {
                   A
                 </Avatar>
               }
-              title='Lorem ipsum dolor sit amet'
+              title='John Doe'
               subheader='March 31, 2021'
             />
             <CardMedia
@@ -202,10 +207,11 @@ const Posts = () => {
               title='Paella dish'
             />
             <CardContent>
-              <Typography variant='body2' color='textSecondary' component='p'>
-                This impressive paella is a perfect party dish and a fun meal to
-                cook together with your guests. Add 1 cup of frozen peas along
-                with the mussels, if you like.
+              <Typography variant='h6'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </Typography>
+              <Typography variant='subtitle2' color='textSecondary'>
+                tags
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
