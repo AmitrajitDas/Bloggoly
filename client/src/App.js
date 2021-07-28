@@ -2,15 +2,16 @@ import {
   MuiThemeProvider,
   createTheme,
   responsiveFontSizes,
-  Paper,
   CssBaseline,
 } from '@material-ui/core'
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 // components
-
 import Navbar from './components/Navbar/Navbar.jsx'
+
+// screens
+import Home from './screens/Home/Home.jsx'
 
 const App = () => {
   const theme = responsiveFontSizes(
@@ -39,11 +40,12 @@ const App = () => {
     <div>
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <Paper>
-          <Router>
-            <Navbar />
-          </Router>
-        </Paper>
+        <Router>
+          <Navbar />
+          <Switch>
+            <Home />
+          </Switch>
+        </Router>
       </MuiThemeProvider>
     </div>
   )
