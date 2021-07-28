@@ -18,7 +18,7 @@ const Navbar = () => {
         <Toolbar>
           <Link to='/' style={{ textDecoration: 'none', color: 'white' }}>
             <Typography variant='h4' className={classes.title}>
-              Feeds
+              Dev.daily
             </Typography>
           </Link>
           <Typography variant='h4' className={classes.title}>
