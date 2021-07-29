@@ -5,7 +5,7 @@ import {
   CssBaseline,
 } from '@material-ui/core'
 
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 // components
 import Navbar from './components/Navbar/Navbar.jsx'
@@ -30,6 +30,7 @@ const App = () => {
         primary: { main: '#032541' },
         secondary: { main: '#39A2DB' },
         alternate: { main: '#161616' },
+        error: { main: '#F8485E' },
         background: {
           default: '#043359',
         },

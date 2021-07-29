@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid } from '@material-ui/core'
 import Hero from '../../components/Hero/Hero.jsx'
-import Posts from '../../components/Posts/Blogs.jsx'
+import Posts from '../../components/Blogs/Blogs.jsx'
 import Sidebar from '../../components/Sidebar/Sidebar.jsx'
 import { useStyles } from './styles.js'
 

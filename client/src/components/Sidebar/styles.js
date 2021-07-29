@@ -40,24 +40,5 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  aboutWrapper: {
-    backgroundColor: theme.palette.primary.main,
-    paddingBottom: '3rem',
-    borderRadius: '1rem',
-    marginTop: '2rem',
-  },
-
-  aboutHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '2rem',
-  },
-
-  about: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '2rem',
-  },
+  
 }))

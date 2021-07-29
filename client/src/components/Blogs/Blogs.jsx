@@ -33,11 +33,7 @@ const Blogs = () => {
             // raised={raised}
           >
             <CardHeader
-              avatar={
-                <Avatar aria-label='recipe' className={classes.avatar}>
-                  A
-                </Avatar>
-              }
+              avatar={<Avatar className={classes.avatar}>J</Avatar>}
               title='John Doe'
               subheader='March 31, 2021'
             />
@@ -191,11 +187,7 @@ const Blogs = () => {
             // raised={raised}
           >
             <CardHeader
-              avatar={
-                <Avatar aria-label='recipe' className={classes.avatar}>
-                  A
-                </Avatar>
-              }
+              avatar={<Avatar className={classes.avatar}>A</Avatar>}
               title='John Doe'
               subheader='March 31, 2021'
             />
