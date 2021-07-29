@@ -14,6 +14,7 @@ import Navbar from './components/Navbar/Navbar.jsx'
 import Home from './screens/HomeScreen/Home.jsx'
 import Blog from './screens/BlogScreen/Blog.jsx'
 import Create from './screens/CreateBlogScreen/Create.jsx'
+import Login from './screens/LoginScreen/Login.jsx'
 
 const App = () => {
   const theme = responsiveFontSizes(
@@ -49,6 +50,7 @@ const App = () => {
             <Route exact path='/' component={Home} />
             <Route path='/post' component={Blog} />
             <Route path='/create' component={Create} />
+            <Route path='/login' component={Login} />
           </Switch>
         </Router>
       </MuiThemeProvider>
