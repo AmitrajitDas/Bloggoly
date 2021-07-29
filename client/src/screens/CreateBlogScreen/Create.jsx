@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextField, Paper, Grid } from '@material-ui/core'
+import { TextField, Paper, Grid, Button } from '@material-ui/core'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
 import { useStyles } from './styles'
 
@@ -61,6 +61,17 @@ const Create = () => {
                   shrink: true,
                 }}
               />
+              <Grid item md={12}>
+                <Button
+                  type='submit'
+                  fullWidth
+                  variant='contained'
+                  color='secondary'
+                  className={classes.button}
+                >
+                  Publish
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Paper>
