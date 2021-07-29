@@ -68,6 +68,7 @@ export const useStyles = makeStyles((theme) => ({
     width: '80%',
     marginTop: '2rem',
     borderRadius: '1rem',
+    objectFit: 'cover',
   },
 
   blogHeader: {

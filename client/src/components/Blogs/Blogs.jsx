@@ -62,7 +62,7 @@ const Blogs = () => {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item md={4} className={classes.wrapper}>
+        {/* <Grid item md={4} className={classes.wrapper}>
           <Card
             className={classes.card}
             // onMouseOver={toggleRaised}
@@ -252,7 +252,7 @@ const Blogs = () => {
               </IconButton>
             </CardActions>
           </Card>
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   )

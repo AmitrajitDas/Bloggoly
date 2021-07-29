@@ -11,8 +11,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar.jsx'
 
 // screens
-import Home from './screens/Home/Home.jsx'
+import Home from './screens/HomeScreen/Home.jsx'
 import Blog from './screens/BlogScreen/Blog.jsx'
+import Create from './screens/CreateBlogScreen/Create.jsx'
 
 const App = () => {
   const theme = responsiveFontSizes(
@@ -47,6 +48,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/post' component={Blog} />
+            <Route path='/create' component={Create} />
           </Switch>
         </Router>
       </MuiThemeProvider>

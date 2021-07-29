@@ -45,11 +45,11 @@ const Post = () => {
                 <Grid container>
                   <Grid item md={12} className={classes.blogOptions}>
                     <IconButton>
-                      <EditIcon color='secondary' />
+                      <EditIcon color='error' />
                     </IconButton>
-                    <IconButton>
+                    {/* <IconButton>
                       <DeleteIcon color='error' />
-                    </IconButton>
+                    </IconButton> */}
                   </Grid>
                 </Grid>
                 <Typography variant='h6' component='p'>
