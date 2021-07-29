@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Grid, Typography, Paper, IconButton, Avatar } from '@material-ui/core'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -44,9 +45,11 @@ const Post = () => {
               <Paper className={classes.blogWrapper}>
                 <Grid container>
                   <Grid item md={12} className={classes.blogOptions}>
-                    <IconButton>
-                      <EditIcon color='error' />
-                    </IconButton>
+                    <Link to='/create'>
+                      <IconButton>
+                        <EditIcon color='error' />
+                      </IconButton>
+                    </Link>
                     {/* <IconButton>
                       <DeleteIcon color='error' />
                     </IconButton> */}
