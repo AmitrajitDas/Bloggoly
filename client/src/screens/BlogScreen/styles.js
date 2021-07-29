@@ -53,4 +53,39 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   tags: { cursor: 'pointer' },
+
+  avatar: {
+    backgroundColor: '#F8485E',
+  },
+
+  blogImgWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+
+  blogImg: {
+    height: '70%',
+    width: '80%',
+    marginTop: '2rem',
+    borderRadius: '1rem',
+  },
+
+  blogHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: '-6rem',
+  },
+
+  blogWrapper: {
+    backgroundColor: theme.palette.primary.main,
+    borderRadius: '1rem',
+    padding: '2rem',
+  },
+
+  blogOptions: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginBottom: '2rem',
+  },
 }))
