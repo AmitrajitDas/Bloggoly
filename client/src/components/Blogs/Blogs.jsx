@@ -37,7 +37,10 @@ const Blogs = () => {
               title='John Doe'
               subheader='March 31, 2021'
             />
-            <Link to='/post' style={{ textDecoration: 'none', color: 'white' }}>
+            <Link
+              to='/blog/:id'
+              style={{ textDecoration: 'none', color: 'white' }}
+            >
               <CardMedia
                 className={classes.media}
                 image='https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y29kaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80'

@@ -49,7 +49,7 @@ const App = () => {
           <Navbar />
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route path='/post' component={Blog} />
+            <Route path='/blog/:id' component={Blog} />
             <Route path='/create' component={Create} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
