@@ -58,19 +58,17 @@ export const userRegister = asyncHandler(async (req, res) => {
 })
 
 // @desc Get user profile
-// @route POST /api/auth/profile
+// @route GET /api/auth/profile
 // @access Private
 
 export const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id)
 
   if (user) {
-    res.json({
+    res.status(200).json({
       _id: user._id,
       name: user.name,
       email: user.email,
-      password: user.password,
-      isAdmin: user.isAdmin,
     })
   } else {
     res.status(404)
@@ -86,7 +84,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id)
 
   if (user) {
-    user.name = req.body.name || user.name
+    user.username = req.body.username || user.username
     user.email = req.body.email || user.email
     if (req.body.password) {
       user.password = req.body.password
@@ -96,11 +94,35 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 
     res.json({
       _id: updatedUser._id,
-      name: updatedUser.name,
+      name: updatedUser.username,
       email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
       token: generateAuthToken(updatedUser._id),
     })
+  } else {
+    res.status(404)
+    throw new Error('User not found!')
+  }
+})
+
+// @desc Delete user
+// @route DELETE /api/auth/profile
+// @access Public
+
+export const deleteUser = asyncHandler(async (req, res) => {
+  // try {
+  //   await User.findByIdAndDelete(req.params.id)
+  //   res.status(200).json('User deleted successfully!')
+  // } catch (error) {
+  //   res.status(404)
+  //   throw new Error('User not found!')
+  // }
+
+  const user = await User.findById(req.user._id)
+
+  if (user) {
+    await user.deleteOne({ id: user._id })
+
+    res.status(200).json(`${user.username} has been removed`)
   } else {
     res.status(404)
     throw new Error('User not found!')
