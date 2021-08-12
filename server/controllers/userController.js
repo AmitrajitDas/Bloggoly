@@ -109,7 +109,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 
 // @desc Delete user
 // @route DELETE /api/auth/profile
-// @access Public
+// @access Private
 
 export const deleteUser = asyncHandler(async (req, res) => {
   // try {
