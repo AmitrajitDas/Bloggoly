@@ -70,7 +70,7 @@ export const getUserProfile = asyncHandler(async (req, res) => {
     res.status(200).json({
       _id: user._id,
       profilepic: user.profilepic,
-      name: user.name,
+      username: user.username,
       email: user.email,
     })
   } else {
@@ -95,9 +95,9 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 
     const updatedUser = await user.save()
 
-    res.json({
+    res.status(200).json({
       _id: updatedUser._id,
-      name: updatedUser.username,
+      username: updatedUser.username,
       email: updatedUser.email,
       token: generateAuthToken(updatedUser._id),
     })
