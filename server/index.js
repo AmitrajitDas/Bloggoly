@@ -1,8 +1,8 @@
 import express from 'express'
-import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import colors from 'colors'
+import multer from 'multer'
 
 import connectDB from './config/db.js'
 import userRouter from './routes/userRouter.js'
@@ -25,6 +25,20 @@ app.get('/', (req, res) => {
 app.use('/api/auth', userRouter)
 app.use('/api/blog', blogRouter)
 app.use('/api/category', categoryRouter)
+
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, 'uploads')
+  },
+  filename: (req, file, callback) => {
+    callback(null, req.body.name)
+  },
+})
+
+const upload = multer({ storage: storage })
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  res.status(200).json('File is uploaded')
+})
 
 app.use(errorHandler)
 app.use(notFound)
