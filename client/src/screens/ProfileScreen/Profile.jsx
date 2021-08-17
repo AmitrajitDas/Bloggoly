@@ -8,8 +8,6 @@ import {
   Container,
   InputAdornment,
   IconButton,
-  Grid,
-  Link,
 } from '@material-ui/core'
 
 import UpdateIcon from '@material-ui/icons/Update'
@@ -27,12 +25,8 @@ const Register = ({ location, history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   //   const [message, setMessage] = useState('')
-
-  const redirect = location.search ? location.search.split('=')[1] : '/login'
 
   return (
     <Container component='main' maxWidth='xs'>
