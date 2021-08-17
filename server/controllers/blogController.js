@@ -2,14 +2,14 @@ import asyncHandler from 'express-async-handler'
 import Blog from '../models/blogModel.js'
 
 // @desc Create a blog
-// @route POST /api/blogs
+// @route POST /api/blogs/create
 // @access Private
 
 export const createBlog = asyncHandler(async (req, res) => {
-  const { title, desc, photo, categories } = req.body
+  const { username, title, desc, photo, categories } = req.body
 
   const blog = new Blog({
-    user: req.user._id,
+    username,
     title,
     desc,
     photo,
@@ -20,18 +20,46 @@ export const createBlog = asyncHandler(async (req, res) => {
   res.status(201).json(createdBlog)
 })
 
-// @desc Fetch blogs
-// @route GET /api/blogs/:id
+// @desc Fetch a single blog
+// @route GET /api/blogs/getblog/:id
 // @access Private
 
-export const fetchBlogs = asyncHandler(async (req, res) => {
-  const blog = await Blog.findById(req.params.id).populate('user', 'username')
+export const fetchBlog = asyncHandler(async (req, res) => {
+  const blog = await Blog.findById(req.params.id)
 
   if (blog) {
     res.status(200).json(blog)
   } else {
     res.status(404)
     throw new Error('Blog not found')
+  }
+})
+
+// @desc Fetch all blogs
+// @route GET /api/blogs/getblogs
+// @access Private
+
+export const fetchBlogs = asyncHandler(async (req, res) => {
+  const username = req.query.user
+  const categoryname = req.query.cat
+
+  try {
+    let blogs
+    if (username) {
+      blogs = await Blog.find({ username })
+    } else if (categoryname) {
+      blogs = await Blog.find({
+        categories: {
+          $in: [categoryname],
+        },
+      })
+    } else {
+      blogs = await Blog.find()
+    }
+    res.status(200).json(blogs)
+  } catch {
+    res.status(404)
+    throw new Error('Blogs not found')
   }
 })
 

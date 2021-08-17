@@ -18,10 +18,9 @@ const blogSchema = new mongoose.Schema(
       default: '',
     },
 
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: false,
-      ref: 'User',
+    username: {
+      type: String,
+      required: true,
     },
 
     categories: {

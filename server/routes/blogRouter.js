@@ -1,6 +1,7 @@
 import express from 'express'
 import {
   createBlog,
+  fetchBlog,
   fetchBlogs,
   updateBlog,
   deleteBlog,
@@ -11,7 +12,8 @@ import { routeProtection } from '../middlewares/authMiddleware.js'
 const router = express.Router()
 
 router.route('/create').post(routeProtection, createBlog)
-router.route('/getblogs/:id').get(routeProtection, fetchBlogs)
+router.route('/getblog/:id').get(routeProtection, fetchBlog)
+router.route('/getblogs').get(routeProtection, fetchBlogs)
 router.route('/update/:id').put(routeProtection, updateBlog)
 router.route('/delete/:id').delete(routeProtection, deleteBlog)
 
