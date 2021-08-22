@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler'
 import Blog from '../models/blogModel.js'
 
 // @desc Create a blog
-// @route POST /api/blogs/create
+// @route POST /api/blog/create
 // @access Private
 
 export const createBlog = asyncHandler(async (req, res) => {
@@ -21,7 +21,7 @@ export const createBlog = asyncHandler(async (req, res) => {
 })
 
 // @desc Fetch a single blog
-// @route GET /api/blogs/getblog/:id
+// @route GET /api/blog/getblog/:id
 // @access Private
 
 export const fetchBlog = asyncHandler(async (req, res) => {
@@ -36,7 +36,7 @@ export const fetchBlog = asyncHandler(async (req, res) => {
 })
 
 // @desc Fetch all blogs
-// @route GET /api/blogs/getblogs
+// @route GET /api/blog/getblogs
 // @access Private
 
 export const fetchBlogs = asyncHandler(async (req, res) => {
@@ -64,7 +64,7 @@ export const fetchBlogs = asyncHandler(async (req, res) => {
 })
 
 // @desc Update a blog
-// @route PUT /api/blogs/:id
+// @route PUT /api/blog/:id
 // @access Private
 
 export const updateBlog = asyncHandler(async (req, res) => {
@@ -92,7 +92,7 @@ export const updateBlog = asyncHandler(async (req, res) => {
 })
 
 // @desc Delete a blog
-// @route DELETE /api/blogs/:id
+// @route DELETE /api/blog/:id
 // @access Private
 
 export const deleteBlog = asyncHandler(async (req, res) => {

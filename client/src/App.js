@@ -54,7 +54,7 @@ const App = () => {
             <Route path='/create' component={Create} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
-            <Route path='/update-profile' component={Profile} />
+            <Route path='/profile' component={Profile} />
           </Switch>
         </Router>
       </MuiThemeProvider>
