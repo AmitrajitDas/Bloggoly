@@ -2,10 +2,10 @@ import { Grid } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
 import Blog from '../Blog/Blog.jsx'
 import Loader from '../../utils/Loader/Loader.jsx'
-import { useStyles } from './styles'
+// import { useStyles } from './styles'
 
 const Blogs = ({ blogs, loading, error }) => {
-  const classes = useStyles()
+  // const classes = useStyles()
 
   return (
     <div>
