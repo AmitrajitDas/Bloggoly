@@ -42,19 +42,19 @@ const Post = () => {
               </Grid>
               <Grid item md={12}>
                 <Typography variant='h4' className={classes.blogHeader}>
-                  {blog.title}
+                  {blog && blog.title}
                 </Typography>
               </Grid>
               <Grid item md={12} style={{ padding: '4rem' }}>
                 <Grid container>
                   <Grid item md={10}>
                     <Typography variant='body2' component='p'>
-                      Author: {blog.username}
+                      Author: {blog && blog.username}
                     </Typography>
                   </Grid>
                   <Grid item md={2}>
                     <Typography variant='body2' component='p'>
-                      {new Date(blog.createdAt).toDateString()}
+                      {new Date(blog && blog.createdAt).toDateString()}
                     </Typography>
                   </Grid>
                 </Grid>
@@ -74,7 +74,7 @@ const Post = () => {
                     </Grid>
                   </Grid>
                   <Typography variant='h6' component='p'>
-                    {blog.desc}
+                    {blog && blog.desc}
                   </Typography>
                 </Paper>
               </Grid>
@@ -91,11 +91,11 @@ const Post = () => {
               <Grid container spacing={2} className={classes.profileWrapper}>
                 <Grid item md={3}>
                   <Avatar className={classes.avatar}>
-                    {blog.username.charAt(0).toUpperCase()}
+                    {blog && blog.username.charAt(0).toUpperCase()}
                   </Avatar>
                 </Grid>
                 <Grid item md={9} style={{ marginTop: '2px' }}>
-                  <Typography variant='h6'>{blog.username}</Typography>
+                  <Typography variant='h6'>{blog && blog.username}</Typography>
                 </Grid>
               </Grid>
               <Typography
@@ -114,12 +114,12 @@ const Post = () => {
               <Grid container spacing={3}>
                 <Grid item md={6} className={classes.categories}>
                   <Typography variant='body1' className={classes.tags}>
-                    {blog.categories[0]}
+                    {blog && blog.categories[0]}
                   </Typography>
                 </Grid>
                 <Grid item md={6} className={classes.categories}>
                   <Typography variant='body1' className={classes.tags}>
-                    {blog.categories[1]}
+                    {blog && blog.categories[1]}
                   </Typography>
                 </Grid>
               </Grid>

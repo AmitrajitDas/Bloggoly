@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler'
 import Category from '../models/categoryModel.js'
 
 // @desc Create a category
-// @route POST /api/category
+// @route POST /api/category/create
 // @access Private
 
 export const createCategory = asyncHandler(async (req, res) => {
@@ -18,7 +18,7 @@ export const createCategory = asyncHandler(async (req, res) => {
 })
 
 // @desc Get all categories
-// @route GET /api/category
+// @route GET /api/category/getCategories
 // @access Private
 
 export const fetchCategories = asyncHandler(async (req, res) => {

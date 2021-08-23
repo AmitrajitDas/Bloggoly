@@ -1,13 +1,23 @@
-import React from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Grid, Typography, Paper, IconButton } from '@material-ui/core'
 import FacebookIcon from '@material-ui/icons/Facebook'
 import InstagramIcon from '@material-ui/icons/Instagram'
 import TwitterIcon from '@material-ui/icons/Twitter'
 import PinterestIcon from '@material-ui/icons/Pinterest'
 import { useStyles } from './styles'
+import { fetchCategoriesAction } from '../../redux/actions/categoryActions'
 
 const Sidebar = () => {
   const classes = useStyles()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchCategoriesAction())
+  }, [dispatch])
+
+  const { categories } = useSelector((state) => state.fetchCategories)
+
   return (
     <div>
       <Paper className={classes.categoriesWrapper}>
@@ -15,36 +25,14 @@ const Sidebar = () => {
           Categories
         </Typography>
         <Grid container spacing={3}>
-          <Grid item md={6} className={classes.categories}>
-            <Typography variant='body1' className={classes.tags}>
-              Tags
-            </Typography>
-          </Grid>
-          <Grid item md={6} className={classes.categories}>
-            <Typography variant='body1' className={classes.tags}>
-              Tags
-            </Typography>
-          </Grid>
-          <Grid item md={6} className={classes.categories}>
-            <Typography variant='body1' className={classes.tags}>
-              Tags
-            </Typography>
-          </Grid>
-          <Grid item md={6} className={classes.categories}>
-            <Typography variant='body1' className={classes.tags}>
-              Tags
-            </Typography>
-          </Grid>
-          <Grid item md={6} className={classes.categories}>
-            <Typography variant='body1' className={classes.tags}>
-              Tags
-            </Typography>
-          </Grid>
-          <Grid item md={6} className={classes.categories}>
-            <Typography variant='body1' className={classes.tags}>
-              Tags
-            </Typography>
-          </Grid>
+          {categories &&
+            categories.map((category) => (
+              <Grid item md={6} className={classes.categories}>
+                <Typography variant='body1' className={classes.tags}>
+                  {category.type}
+                </Typography>
+              </Grid>
+            ))}
         </Grid>
       </Paper>
       <Paper className={classes.socialsWrapper}>
