@@ -42,6 +42,7 @@ export const fetchBlog = asyncHandler(async (req, res) => {
 export const fetchBlogs = asyncHandler(async (req, res) => {
   const username = req.query.user
   const categoryname = req.query.cat
+  const title = req.query.title
 
   try {
     let blogs
@@ -51,6 +52,12 @@ export const fetchBlogs = asyncHandler(async (req, res) => {
       blogs = await Blog.find({
         categories: {
           $in: [categoryname],
+        },
+      })
+    } else if (title) {
+      blogs = await Blog.find({
+        title: {
+          $in: [title],
         },
       })
     } else {
