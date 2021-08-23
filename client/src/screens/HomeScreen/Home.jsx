@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Grid } from '@material-ui/core'
 import Hero from '../../components/Hero/Hero.jsx'
@@ -10,12 +11,15 @@ import { fetchAllBlogsAction } from '../../redux/actions/blogActions'
 const Home = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
+  const location = useLocation()
+
+  const query = location.search
 
   const { loading, blogs, error } = useSelector((state) => state.fetchAllBlogs)
 
   useEffect(() => {
-    dispatch(fetchAllBlogsAction())
-  }, [dispatch])
+    dispatch(fetchAllBlogsAction(query))
+  }, [dispatch, query])
 
   return (
     <div>

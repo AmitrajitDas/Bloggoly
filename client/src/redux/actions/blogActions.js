@@ -8,14 +8,21 @@ import {
 } from '../constants/blogConstants'
 import axios from 'axios'
 
-export const fetchAllBlogsAction = () => async (dispatch) => {
+export const fetchAllBlogsAction = (query) => async (dispatch) => {
   dispatch({ type: FETCH_ALL_BLOGS_REQUEST })
 
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_DEV_API}/api/blog/getblogs`
-    )
-    dispatch({ type: FETCH_ALL_BLOGS_SUCCESS, payload: data })
+    if (query) {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_DEV_API}/api/blog/getblogs` + query
+      )
+      dispatch({ type: FETCH_ALL_BLOGS_SUCCESS, payload: data })
+    } else {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_DEV_API}/api/blog/getblogs`
+      )
+      dispatch({ type: FETCH_ALL_BLOGS_SUCCESS, payload: data })
+    }
   } catch (error) {
     dispatch({
       type: FETCH_ALL_BLOGS_FAILURE,
