@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { TextField, Button, InputAdornment } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
@@ -10,7 +10,6 @@ const Searchbar = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const history = useHistory()
-  const location = useLocation()
 
   const [searchTerm, setSearchTerm] = useState('')
 

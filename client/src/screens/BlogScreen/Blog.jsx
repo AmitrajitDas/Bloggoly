@@ -48,9 +48,14 @@ const Post = () => {
               <Grid item md={12} style={{ padding: '4rem' }}>
                 <Grid container>
                   <Grid item md={10}>
-                    <Typography variant='body2' component='p'>
-                      Author: {blog && blog.username}
-                    </Typography>
+                    <Link
+                      to={`/?user=${blog && blog.username}`}
+                      style={{ textDecoration: 'none', color: 'white' }}
+                    >
+                      <Typography variant='body2' component='p'>
+                        Author: {blog && blog.username}
+                      </Typography>
+                    </Link>
                   </Grid>
                   <Grid item md={2}>
                     <Typography variant='body2' component='p'>
@@ -95,7 +100,14 @@ const Post = () => {
                   </Avatar>
                 </Grid>
                 <Grid item md={9} style={{ marginTop: '2px' }}>
-                  <Typography variant='h6'>{blog && blog.username}</Typography>
+                  <Link
+                    to={`/?user=${blog && blog.username}`}
+                    style={{ textDecoration: 'none', color: 'white' }}
+                  >
+                    <Typography variant='h6'>
+                      {blog && blog.username}
+                    </Typography>
+                  </Link>
                 </Grid>
               </Grid>
               <Typography

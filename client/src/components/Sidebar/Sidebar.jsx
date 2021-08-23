@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Grid, Typography, Paper, IconButton } from '@material-ui/core'
 import FacebookIcon from '@material-ui/icons/Facebook'
@@ -28,9 +29,14 @@ const Sidebar = () => {
           {categories &&
             categories.map((category) => (
               <Grid item md={6} className={classes.categories}>
-                <Typography variant='body1' className={classes.tags}>
-                  {category.type}
-                </Typography>
+                <Link
+                  to={`/?cat=${category.type}`}
+                  style={{ textDecoration: 'none', color: 'white' }}
+                >
+                  <Typography variant='body1' className={classes.tags}>
+                    {category.type}
+                  </Typography>
+                </Link>
               </Grid>
             ))}
         </Grid>
