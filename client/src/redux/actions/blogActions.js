@@ -5,6 +5,9 @@ import {
   FETCH_SINGLE_BLOG_REQUEST,
   FETCH_SINGLE_BLOG_SUCCESS,
   FETCH_SINGLE_BLOG_FAILURE,
+  CREATE_BLOG_REQUEST,
+  CREATE_BLOG_SUCCESS,
+  CREATE_BLOG_FAILURE,
 } from '../constants/blogConstants'
 import axios from 'axios'
 
@@ -34,9 +37,8 @@ export const fetchAllBlogsAction = (query) => async (dispatch) => {
 }
 
 export const fetchSingleBlogAction = (id) => async (dispatch) => {
-  dispatch({ type: FETCH_SINGLE_BLOG_REQUEST })
-
   try {
+    dispatch({ type: FETCH_SINGLE_BLOG_REQUEST })
     const { data } = await axios.get(
       `${process.env.REACT_APP_DEV_API}/api/blog/getblog/${id}`
     )
@@ -51,3 +53,64 @@ export const fetchSingleBlogAction = (id) => async (dispatch) => {
     })
   }
 }
+
+export const createBlogAction =
+  (username, title, desc, file, categories) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: CREATE_BLOG_REQUEST })
+
+      const {
+        userLogin: { loginData },
+      } = getState()
+
+      const newBlog = {
+        username,
+        title,
+        desc,
+        file,
+        categories,
+      }
+
+      if (file) {
+        const fileData = new FormData()
+        const filename = Date.now() + file.name
+        fileData.append('name', filename)
+        fileData.append('file', file)
+        newBlog.file = filename
+        await axios.post(
+          `${process.env.REACT_APP_DEV_API}/api/upload`,
+          fileData
+        )
+      } else {
+        return
+      }
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${loginData.token} `,
+        },
+      }
+
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_DEV_API}/api/blog/create`,
+        {
+          username,
+          title,
+          desc,
+          photo: newBlog.file,
+          categories,
+        },
+        config
+      )
+      dispatch({ type: CREATE_BLOG_SUCCESS, payload: data })
+    } catch (error) {
+      dispatch({
+        type: CREATE_BLOG_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      })
+    }
+  }
