@@ -1,10 +1,21 @@
-import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core'
 
 import { useStyles } from './styles'
 
 const Navbar = () => {
   const classes = useStyles()
+  const history = useHistory()
+
+  const { loginData } = useSelector((state) => state.userLogin)
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    if (loginData) {
+      history.push('/create')
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -30,11 +41,9 @@ const Navbar = () => {
           <Link to='/login' className={classes.whiteLink}>
             <Button color='inherit'>Login</Button>
           </Link>
-          <Link to='/create' className={classes.blackLink}>
-            <Button variant='contained' color='secondary'>
-              +Create
-            </Button>
-          </Link>
+          <Button variant='contained' color='secondary' onClick={handleClick}>
+            +Create
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
