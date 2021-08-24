@@ -13,6 +13,11 @@ export const useStyles = makeStyles((theme) => ({
     width: '80rem',
   },
 
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(1),
+  },
+
   blogImgWrapper: {
     display: 'flex',
     justifyContent: 'center',

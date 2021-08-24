@@ -71,7 +71,7 @@ export const fetchBlogs = asyncHandler(async (req, res) => {
 })
 
 // @desc Update a blog
-// @route PUT /api/blog/:id
+// @route PUT /api/blog/update/:id
 // @access Private
 
 export const updateBlog = asyncHandler(async (req, res) => {
@@ -99,7 +99,7 @@ export const updateBlog = asyncHandler(async (req, res) => {
 })
 
 // @desc Delete a blog
-// @route DELETE /api/blog/:id
+// @route DELETE /api/blog/delete/:id
 // @access Private
 
 export const deleteBlog = asyncHandler(async (req, res) => {

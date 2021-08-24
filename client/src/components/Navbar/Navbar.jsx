@@ -25,7 +25,7 @@ const Navbar = () => {
         <Toolbar>
           <Link to='/' style={{ textDecoration: 'none', color: 'white' }}>
             <Typography variant='h4' className={classes.title}>
-              Dev.daily
+              Bloggoly
             </Typography>
           </Link>
           <Typography variant='h4' className={classes.title}>
@@ -36,9 +36,6 @@ const Navbar = () => {
           </Link>
           <Link to='/about' className={classes.whiteLink}>
             <Button color='inherit'>About</Button>
-          </Link>
-          <Link to='/contact' className={classes.whiteLink}>
-            <Button color='inherit'>Contact Us</Button>
           </Link>
           {loginData ? (
             <Userinfo loginData={loginData} />

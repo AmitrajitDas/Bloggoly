@@ -1,25 +1,37 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useHistory } from 'react-router-dom'
 import { Grid, Typography, Paper, IconButton, Avatar } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
 import EditIcon from '@material-ui/icons/Edit'
+import DeleteIcon from '@material-ui/icons/Delete'
 import { useStyles } from './styles'
-import { fetchSingleBlogAction } from '../../redux/actions/blogActions'
+import {
+  fetchSingleBlogAction,
+  deleteBlogAction,
+} from '../../redux/actions/blogActions'
 import Loader from '../../utils/Loader/Loader.jsx'
 
 const Post = () => {
   const classes = useStyles()
   const params = useParams()
+  const history = useHistory()
   const dispatch = useDispatch()
 
   const blogId = params.id
+  const PF = 'http://localhost:5000/uploads/'
 
   const { error, blog, loading } = useSelector((state) => state.fetchSingleBlog)
 
   useEffect(() => {
     dispatch(fetchSingleBlogAction(blogId))
   }, [dispatch, blogId])
+
+  const handleDelete = (e) => {
+    e.preventDefault()
+    dispatch(deleteBlogAction(blogId))
+    history.push('/')
+  }
 
   return (
     <div className={classes.wrapper}>
@@ -35,7 +47,7 @@ const Post = () => {
             <Grid container>
               <Grid item md={12} className={classes.blogImgWrapper}>
                 <img
-                  src='https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y29kaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80'
+                  src={blog && PF + blog.photo}
                   alt='blog-img'
                   className={classes.blogImg}
                 />
@@ -52,13 +64,13 @@ const Post = () => {
                       to={`/?user=${blog && blog.username}`}
                       style={{ textDecoration: 'none', color: 'white' }}
                     >
-                      <Typography variant='body2' component='p'>
+                      <Typography variant='body1' component='p'>
                         Author: {blog && blog.username}
                       </Typography>
                     </Link>
                   </Grid>
                   <Grid item md={2}>
-                    <Typography variant='body2' component='p'>
+                    <Typography variant='body1' component='p'>
                       {new Date(blog && blog.createdAt).toDateString()}
                     </Typography>
                   </Grid>
@@ -68,14 +80,14 @@ const Post = () => {
                 <Paper className={classes.blogWrapper}>
                   <Grid container>
                     <Grid item md={12} className={classes.blogOptions}>
-                      <Link to='/create'>
+                      <Link to='/update'>
                         <IconButton>
-                          <EditIcon color='error' />
+                          <EditIcon color='secondary' />
                         </IconButton>
                       </Link>
-                      {/* <IconButton>
-                    <DeleteIcon color='error' />
-                  </IconButton> */}
+                      <IconButton>
+                        <DeleteIcon color='error' onClick={handleDelete} />
+                      </IconButton>{' '}
                     </Grid>
                   </Grid>
                   <Typography variant='h6' component='p'>

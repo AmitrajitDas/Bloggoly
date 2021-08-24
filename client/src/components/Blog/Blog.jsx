@@ -17,6 +17,8 @@ import { useStyles } from './styles'
 const Blog = ({ blog }) => {
   const classes = useStyles()
 
+  const PF = 'http://localhost:5000/uploads/'
+
   // const [raised, setRaised] = useState(false)
 
   // const toggleRaised = () => setRaised(!raised)
@@ -46,7 +48,7 @@ const Blog = ({ blog }) => {
             >
               <CardMedia
                 className={classes.media}
-                image={blog.photo}
+                image={PF + blog.photo}
                 title={blog.title}
               />
               <CardContent>
