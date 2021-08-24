@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Avatar,
   Button,
@@ -11,28 +12,45 @@ import {
   Grid,
   Link,
 } from '@material-ui/core'
-
+import Alert from '@material-ui/lab/Alert'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
-
-// import Loader from '../../components/Loader/Loader'
-// import RedAlertBox from '../../components/Alert/RedAlert'
-// import GreenAlertBox from '../../components/Alert/GreenAlert'
 import { useStyles } from './styles'
+import { userRegisterAction } from '../../redux/actions/authActions'
 
 const Register = ({ location, history }) => {
   const classes = useStyles()
+  const dispatch = useDispatch()
 
-  const [name, setName] = useState('')
+  const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  //   const [message, setMessage] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [message, setMessage] = useState('')
+
+  const { success, error, registerData } = useSelector(
+    (state) => state.userRegister
+  )
 
   const redirect = location.search ? location.search.split('=')[1] : '/login'
+
+  useEffect(() => {
+    if (registerData) {
+      history.push('/login')
+    }
+  }, [registerData, history])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (password !== confirmPassword) {
+      setMessage("Password doesn't match")
+    } else {
+      dispatch(userRegisterAction(username, email, password))
+    }
+  }
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -43,17 +61,20 @@ const Register = ({ location, history }) => {
             <AccountCircleIcon />
           </Avatar>
           <Typography variant='h4'>Sign Up</Typography>
-          <form className={classes.form} noValidate>
+          {success && <Alert severity='success'>User registered</Alert>}
+          {message && <Alert severity='warning'>{message}</Alert>}
+          {error && <Alert severity='error'>{error}</Alert>}
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant='outlined'
               margin='normal'
               required
               fullWidth
-              id='name'
-              placeholder='Enter your name'
-              name='name'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              id='username'
+              placeholder='Enter your username'
+              name='username'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               InputLabelProps={{
                 classes: {
                   root: classes.cssLabel,
@@ -138,24 +159,12 @@ const Register = ({ location, history }) => {
               required
               fullWidth
               name='confirm password'
-              placeholder='Confirm your password'
+              placeholder='Confirm Password'
               type={showConfirmPassword ? 'text' : 'password'}
               id='confirm password'
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              InputLabelProps={{
-                classes: {
-                  root: classes.cssLabel,
-                  focused: classes.cssFocused,
-                },
-              }}
               InputProps={{
-                classes: {
-                  root: classes.cssOutlinedInput,
-                  focused: classes.cssFocused,
-                  notchedOutline: classes.notchedOutline,
-                },
-
                 endAdornment: (
                   <InputAdornment position='end'>
                     <IconButton
@@ -176,7 +185,6 @@ const Register = ({ location, history }) => {
                 ),
               }}
             />
-
             <Button
               type='submit'
               fullWidth
@@ -184,7 +192,7 @@ const Register = ({ location, history }) => {
               variant='contained'
               className={classes.submit}
               onClick={(e) =>
-                !name || !email || !password ? e.preventDefault() : null
+                !username || !email || !password ? e.preventDefault() : null
               }
             >
               Register

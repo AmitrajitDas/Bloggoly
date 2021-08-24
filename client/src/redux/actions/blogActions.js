@@ -9,9 +9,8 @@ import {
 import axios from 'axios'
 
 export const fetchAllBlogsAction = (query) => async (dispatch) => {
-  dispatch({ type: FETCH_ALL_BLOGS_REQUEST })
-
   try {
+    dispatch({ type: FETCH_ALL_BLOGS_REQUEST })
     if (query) {
       const { data } = await axios.get(
         `${process.env.REACT_APP_DEV_API}/api/blog/getblogs` + query
