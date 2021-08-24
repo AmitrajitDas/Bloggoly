@@ -8,6 +8,7 @@ import {
   CREATE_BLOG_REQUEST,
   CREATE_BLOG_SUCCESS,
   CREATE_BLOG_FAILURE,
+  DELETE_BLOG,
 } from '../constants/blogConstants'
 
 export const fetchAllBlogsReducer = (state = {}, action) => {
@@ -44,6 +45,15 @@ export const createBlogReducer = (state = {}, action) => {
       return { ...state, loading: false, blogDetails: action.payload }
     case CREATE_BLOG_FAILURE:
       return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const deleteBlogReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_BLOG:
+      return { message: action.payload }
     default:
       return state
   }
