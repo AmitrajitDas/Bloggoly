@@ -22,6 +22,7 @@ const Post = () => {
   const PF = 'http://localhost:5000/uploads/'
 
   const { error, blog, loading } = useSelector((state) => state.fetchSingleBlog)
+  const { loginData } = useSelector((state) => state.userLogin)
 
   useEffect(() => {
     dispatch(fetchSingleBlogAction(blogId))
@@ -80,14 +81,20 @@ const Post = () => {
                 <Paper className={classes.blogWrapper}>
                   <Grid container>
                     <Grid item md={12} className={classes.blogOptions}>
-                      <Link to='/update'>
-                        <IconButton>
-                          <EditIcon color='secondary' />
-                        </IconButton>
-                      </Link>
-                      <IconButton>
-                        <DeleteIcon color='error' onClick={handleDelete} />
-                      </IconButton>{' '}
+                      {blog &&
+                      loginData &&
+                      loginData.username === blog.username ? (
+                        <>
+                          <Link to='/update'>
+                            <IconButton>
+                              <EditIcon color='secondary' />
+                            </IconButton>
+                          </Link>
+                          <IconButton>
+                            <DeleteIcon color='error' onClick={handleDelete} />
+                          </IconButton>{' '}
+                        </>
+                      ) : null}
                     </Grid>
                   </Grid>
                   <Typography variant='h6' component='p'>
