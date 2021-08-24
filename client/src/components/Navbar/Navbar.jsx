@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core'
-
+import Userinfo from './Userinfo.jsx'
 import { useStyles } from './styles'
 
 const Navbar = () => {
@@ -14,6 +14,8 @@ const Navbar = () => {
     e.preventDefault()
     if (loginData) {
       history.push('/create')
+    } else {
+      history.push('/login')
     }
   }
 
@@ -38,9 +40,14 @@ const Navbar = () => {
           <Link to='/contact' className={classes.whiteLink}>
             <Button color='inherit'>Contact Us</Button>
           </Link>
-          <Link to='/login' className={classes.whiteLink}>
-            <Button color='inherit'>Login</Button>
-          </Link>
+          {loginData ? (
+            <Userinfo loginData={loginData} />
+          ) : (
+            <Link to='/login' className={classes.whiteLink}>
+              <Button color='inherit'>Login</Button>
+            </Link>
+          )}
+
           <Button variant='contained' color='secondary' onClick={handleClick}>
             +Create
           </Button>
