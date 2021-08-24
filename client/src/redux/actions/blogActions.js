@@ -8,6 +8,7 @@ import {
   CREATE_BLOG_REQUEST,
   CREATE_BLOG_SUCCESS,
   CREATE_BLOG_FAILURE,
+  DELETE_BLOG,
 } from '../constants/blogConstants'
 import axios from 'axios'
 
@@ -55,7 +56,7 @@ export const fetchSingleBlogAction = (id) => async (dispatch) => {
 }
 
 export const createBlogAction =
-  (username, title, desc, file, categories) => async (dispatch, getState) => {
+  (username, title, desc, file, category) => async (dispatch, getState) => {
     try {
       dispatch({ type: CREATE_BLOG_REQUEST })
 
@@ -68,7 +69,7 @@ export const createBlogAction =
         title,
         desc,
         file,
-        categories,
+        category,
       }
 
       if (file) {
@@ -99,7 +100,7 @@ export const createBlogAction =
           title,
           desc,
           photo: newBlog.file,
-          categories,
+          categories: category,
         },
         config
       )
@@ -114,3 +115,21 @@ export const createBlogAction =
       })
     }
   }
+
+export const deleteBlogAction = (id) => async (dispatch, getState) => {
+  const {
+    userLogin: { loginData },
+  } = getState()
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${loginData.token} `,
+    },
+  }
+  const { data } = await axios.delete(
+    `${process.env.REACT_APP_DEV_API}/api/blog/delete/${id}`,
+    config
+  )
+
+  dispatch({ type: DELETE_BLOG, payload: data })
+}
