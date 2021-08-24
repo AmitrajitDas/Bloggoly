@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Avatar,
   Button,
@@ -11,24 +12,38 @@ import {
   Grid,
   Link,
 } from '@material-ui/core'
-
+import Alert from '@material-ui/lab/Alert'
 import LockIcon from '@material-ui/icons/Lock'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
-
-// import Loader from '../../components/Loader/Loader'
-// import RedAlertBox from '../../components/Alert/RedAlert'
-
+import { userLoginAction } from '../../redux/actions/authActions'
+import Loader from '../../utils/Loader/Loader.jsx'
 import { useStyles } from './styles'
 
 const Login = ({ location, history }) => {
   const classes = useStyles()
+  const dispatch = useDispatch()
+
+  const { loading, success, error, loginData } = useSelector(
+    (state) => state.userLogin
+  )
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+
+  useEffect(() => {
+    if (loginData) {
+      history.push(redirect)
+    }
+  }, [loginData, history, redirect])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(userLoginAction(email, password))
+  }
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -39,7 +54,9 @@ const Login = ({ location, history }) => {
             <LockIcon />
           </Avatar>
           <Typography variant='h4'>Sign In</Typography>
-          <form className={classes.form} noValidate>
+          {error && <Alert severity='error'>{error}</Alert>}
+          {loading && <Loader />}
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant='outlined'
               margin='normal'

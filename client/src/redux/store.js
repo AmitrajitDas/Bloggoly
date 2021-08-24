@@ -5,7 +5,13 @@ import rootReducer from './reducers/indexReducer'
 
 const middleware = [thunk]
 
-const initialState = {}
+const loginDataFromStorage = localStorage.getItem('loginData')
+  ? JSON.parse(localStorage.getItem('loginData'))
+  : null
+
+const initialState = {
+  userLogin: { loginData: loginDataFromStorage },
+}
 
 const store = createStore(
   rootReducer,
