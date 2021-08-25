@@ -5,6 +5,7 @@ import {
   fetchSingleBlogReducer,
   createBlogReducer,
   deleteBlogReducer,
+  updateBlogReducer,
 } from './blogReducers'
 import { fetchCategoriesReducer } from './categoryReducers'
 import { userRegisterReducer, userLoginReducer } from './authReducers'
@@ -17,6 +18,7 @@ const rootReducers = combineReducers({
   userLogin: userLoginReducer,
   createBlog: createBlogReducer,
   deleteBlog: deleteBlogReducer,
+  updateBlog: updateBlogReducer,
 })
 
 export default rootReducers

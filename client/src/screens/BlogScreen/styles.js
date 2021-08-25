@@ -78,6 +78,13 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: '-6rem',
   },
 
+  titleField: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: '-6rem',
+  },
+
   blogWrapper: {
     backgroundColor: theme.palette.primary.main,
     borderRadius: '1rem',
@@ -88,5 +95,29 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     marginBottom: '2rem',
+  },
+
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: `${theme.palette.secondary.main} !important`,
+    },
+  },
+
+  cssFocused: {},
+
+  notchedOutline: {
+    borderWidth: '1px',
+  },
+
+  buttonWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    padding: '0.6rem 2rem 0.6rem 2rem',
+    margin: '0.5rem 0 1rem 0',
+    borderRadius: '20px',
+    fontSize: '1rem',
   },
 }))

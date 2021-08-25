@@ -9,6 +9,9 @@ import {
   CREATE_BLOG_SUCCESS,
   CREATE_BLOG_FAILURE,
   DELETE_BLOG,
+  UPDATE_BLOG_REQUEST,
+  UPDATE_BLOG_SUCCESS,
+  UPDATE_BLOG_FAILURE,
 } from '../constants/blogConstants'
 import axios from 'axios'
 
@@ -133,3 +136,39 @@ export const deleteBlogAction = (id) => async (dispatch, getState) => {
 
   dispatch({ type: DELETE_BLOG, payload: data })
 }
+
+export const updateBlogAction =
+  (id, title, desc) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: UPDATE_BLOG_REQUEST })
+
+      const {
+        userLogin: { loginData },
+      } = getState()
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${loginData.token} `,
+        },
+      }
+
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_DEV_API}/api/blog/update/${id}`,
+        {
+          title,
+          desc,
+        },
+        config
+      )
+      dispatch({ type: UPDATE_BLOG_SUCCESS, payload: data })
+    } catch (error) {
+      dispatch({
+        type: UPDATE_BLOG_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      })
+    }
+  }

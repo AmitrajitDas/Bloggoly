@@ -1,7 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams, useHistory } from 'react-router-dom'
-import { Grid, Typography, Paper, IconButton, Avatar } from '@material-ui/core'
+import {
+  Grid,
+  Typography,
+  Paper,
+  IconButton,
+  Avatar,
+  TextField,
+  Button,
+} from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -11,6 +19,7 @@ import {
   deleteBlogAction,
 } from '../../redux/actions/blogActions'
 import Loader from '../../utils/Loader/Loader.jsx'
+import { updateBlogAction } from '../../redux/actions/blogActions'
 
 const Post = () => {
   const classes = useStyles()
@@ -21,17 +30,32 @@ const Post = () => {
   const blogId = params.id
   const PF = 'http://localhost:5000/uploads/'
 
+  const [title, setTitle] = useState('')
+  const [desc, setDesc] = useState('')
+  const [updateMode, setUpdateMode] = useState(false)
+
   const { error, blog, loading } = useSelector((state) => state.fetchSingleBlog)
   const { loginData } = useSelector((state) => state.userLogin)
 
   useEffect(() => {
     dispatch(fetchSingleBlogAction(blogId))
+    if (blog) {
+      setTitle(blog.title)
+      setDesc(blog.desc)
+    }
   }, [dispatch, blogId])
 
   const handleDelete = (e) => {
     e.preventDefault()
     dispatch(deleteBlogAction(blogId))
-    history.push('/')
+    window.location.replace('/')
+  }
+
+  const handleUpdate = (e) => {
+    e.preventDefault()
+    dispatch(updateBlogAction(blogId, title, desc))
+    setUpdateMode(false)
+    window.location.replace(`/blog/${blogId}`)
   }
 
   return (
@@ -54,9 +78,34 @@ const Post = () => {
                 />
               </Grid>
               <Grid item md={12}>
-                <Typography variant='h4' className={classes.blogHeader}>
-                  {blog && blog.title}
-                </Typography>
+                {updateMode ? (
+                  <TextField
+                    id='title'
+                    placeholder='Enter Title'
+                    margin='normal'
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className={classes.titleField}
+                    InputLabelProps={{
+                      shrink: true,
+                      classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused,
+                      },
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.cssOutlinedInput,
+                        focused: classes.cssFocused,
+                        notchedOutline: classes.notchedOutline,
+                      },
+                    }}
+                  />
+                ) : (
+                  <Typography variant='h4' className={classes.blogHeader}>
+                    {blog && blog.title}
+                  </Typography>
+                )}
               </Grid>
               <Grid item md={12} style={{ padding: '4rem' }}>
                 <Grid container>
@@ -78,30 +127,62 @@ const Post = () => {
                 </Grid>
               </Grid>
               <Grid item md={12} style={{ padding: '2rem' }}>
-                <Paper className={classes.blogWrapper}>
-                  <Grid container>
-                    <Grid item md={12} className={classes.blogOptions}>
-                      {blog &&
-                      loginData &&
-                      loginData.username === blog.username ? (
-                        <>
-                          <Link to='/update'>
+                {updateMode ? (
+                  <TextField
+                    id='standard-full-width'
+                    placeholder="What's your story?"
+                    margin='normal'
+                    fullWidth
+                    multiline
+                    value={desc}
+                    onChange={(e) => setDesc(e.target.value)}
+                    className={classes.blogField}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                ) : (
+                  <Paper className={classes.blogWrapper}>
+                    <Grid container>
+                      <Grid item md={12} className={classes.blogOptions}>
+                        {blog &&
+                        loginData &&
+                        loginData.username === blog.username ? (
+                          <>
                             <IconButton>
-                              <EditIcon color='secondary' />
+                              <EditIcon
+                                color='secondary'
+                                onClick={() => setUpdateMode(!updateMode)}
+                              />
                             </IconButton>
-                          </Link>
-                          <IconButton>
-                            <DeleteIcon color='error' onClick={handleDelete} />
-                          </IconButton>{' '}
-                        </>
-                      ) : null}
+                            <IconButton>
+                              <DeleteIcon
+                                color='error'
+                                onClick={handleDelete}
+                              />
+                            </IconButton>{' '}
+                          </>
+                        ) : null}
+                      </Grid>
                     </Grid>
-                  </Grid>
-                  <Typography variant='h6' component='p'>
-                    {blog && blog.desc}
-                  </Typography>
-                </Paper>
+                    <Typography variant='h6' component='p'>
+                      {blog && blog.desc}
+                    </Typography>
+                  </Paper>
+                )}
               </Grid>
+              {updateMode ? (
+                <Grid item md={12} className={classes.buttonWrapper}>
+                  <Button
+                    variant='contained'
+                    color='secondary'
+                    className={classes.button}
+                    onClick={handleUpdate}
+                  >
+                    Update
+                  </Button>
+                </Grid>
+              ) : null}
             </Grid>
           </Grid>
 

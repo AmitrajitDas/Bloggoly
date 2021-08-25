@@ -6,7 +6,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle'
 import { useStyles } from './styles'
 import { createBlogAction } from '../../redux/actions/blogActions'
 
-const Create = () => {
+const CreateBlog = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -137,4 +137,4 @@ const Create = () => {
   )
 }
 
-export default Create
+export default CreateBlog
