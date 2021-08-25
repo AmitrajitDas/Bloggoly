@@ -27,7 +27,7 @@ export const userRegisterAction =
       }
 
       const { data } = await axios.post(
-        `${process.env.REACT_APP_DEV_API}/api/auth/register`,
+        `${process.env.REACT_APP_PROD_API}/api/auth/register`,
         { username, email, password },
         config
       )
@@ -60,7 +60,7 @@ export const userLoginAction = (email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      `${process.env.REACT_APP_DEV_API}/api/auth/login`,
+      `${process.env.REACT_APP_PROD_API}/api/auth/login`,
       { email, password },
       config
     )
@@ -99,7 +99,7 @@ export const userDetailsAction = (id) => async (dispatch, getState) => {
   }
 
   const { data } = await axios.get(
-    `${process.env.REACT_APP_DEV_API}/api/auth/profile/${id}`,
+    `${process.env.REACT_APP_PROD_API}/api/auth/profile/${id}`,
     config
   )
 
@@ -123,7 +123,7 @@ export const userUpdateAction =
       }
 
       const { data } = await axios.put(
-        `${process.env.REACT_APP_DEV_API}/api/auth/update`,
+        `${process.env.REACT_APP_PROD_API}/api/auth/update`,
         { id, username, email, password },
         config
       )

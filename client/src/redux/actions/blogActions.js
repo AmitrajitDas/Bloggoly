@@ -20,12 +20,12 @@ export const fetchAllBlogsAction = (query) => async (dispatch) => {
     dispatch({ type: FETCH_ALL_BLOGS_REQUEST })
     if (query) {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_DEV_API}/api/blog/getblogs` + query
+        `${process.env.REACT_APP_PROD_API}/api/blog/getblogs` + query
       )
       dispatch({ type: FETCH_ALL_BLOGS_SUCCESS, payload: data })
     } else {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_DEV_API}/api/blog/getblogs`
+        `${process.env.REACT_APP_PROD_API}/api/blog/getblogs`
       )
       dispatch({ type: FETCH_ALL_BLOGS_SUCCESS, payload: data })
     }
@@ -44,7 +44,7 @@ export const fetchSingleBlogAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: FETCH_SINGLE_BLOG_REQUEST })
     const { data } = await axios.get(
-      `${process.env.REACT_APP_DEV_API}/api/blog/getblog/${id}`
+      `${process.env.REACT_APP_PROD_API}/api/blog/getblog/${id}`
     )
     dispatch({ type: FETCH_SINGLE_BLOG_SUCCESS, payload: data })
   } catch (error) {
@@ -82,7 +82,7 @@ export const createBlogAction =
         fileData.append('file', file)
         newBlog.file = filename
         await axios.post(
-          `${process.env.REACT_APP_DEV_API}/api/upload`,
+          `${process.env.REACT_APP_PROD_API}/api/upload`,
           fileData
         )
       } else {
@@ -97,7 +97,7 @@ export const createBlogAction =
       }
 
       const { data } = await axios.post(
-        `${process.env.REACT_APP_DEV_API}/api/blog/create`,
+        `${process.env.REACT_APP_PROD_API}/api/blog/create`,
         {
           username,
           title,
@@ -130,7 +130,7 @@ export const deleteBlogAction = (id) => async (dispatch, getState) => {
     },
   }
   const { data } = await axios.delete(
-    `${process.env.REACT_APP_DEV_API}/api/blog/delete/${id}`,
+    `${process.env.REACT_APP_PROD_API}/api/blog/delete/${id}`,
     config
   )
 
@@ -154,7 +154,7 @@ export const updateBlogAction =
       }
 
       const { data } = await axios.put(
-        `${process.env.REACT_APP_DEV_API}/api/blog/update/${id}`,
+        `${process.env.REACT_APP_PROD_API}/api/blog/update/${id}`,
         {
           title,
           desc,

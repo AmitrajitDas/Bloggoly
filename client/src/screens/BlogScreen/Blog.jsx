@@ -28,7 +28,7 @@ const Post = () => {
   const dispatch = useDispatch()
 
   const blogId = params.id
-  const PF = 'http://localhost:5000/uploads/'
+  const PF = 'https://bloggoly.herokuapp.com/uploads/'
 
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')

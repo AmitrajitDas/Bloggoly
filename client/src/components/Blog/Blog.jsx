@@ -17,7 +17,7 @@ import { useStyles } from './styles'
 const Blog = ({ blog }) => {
   const classes = useStyles()
 
-  const PF = 'http://localhost:5000/uploads/'
+  const PF = 'https://bloggoly.herokuapp.com/uploads/'
 
   // const [raised, setRaised] = useState(false)
 
