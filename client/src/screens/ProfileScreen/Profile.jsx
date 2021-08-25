@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Avatar,
   Button,
@@ -9,7 +11,7 @@ import {
   InputAdornment,
   IconButton,
 } from '@material-ui/core'
-
+import Alert from '@material-ui/lab/Alert'
 import UpdateIcon from '@material-ui/icons/Update'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
@@ -18,15 +20,51 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 // import RedAlertBox from '../../components/Alert/RedAlert'
 // import GreenAlertBox from '../../components/Alert/GreenAlert'
 import { useStyles } from './styles'
+import {
+  userDetailsAction,
+  userUpdateAction,
+  userLogoutAction,
+} from '../../redux/actions/authActions'
+import Loader from '../../utils/Loader/Loader.jsx'
 
-const Register = ({ location, history }) => {
+const Register = () => {
   const classes = useStyles()
+  const dispatch = useDispatch()
+  const history = useHistory()
 
-  const [name, setName] = useState('')
+  const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   //   const [message, setMessage] = useState('')
+
+  const { loginData } = useSelector((state) => state.userLogin)
+  const { loading, profileData, error } = useSelector(
+    (state) => state.userDetails
+  )
+  const { success } = useSelector((state) => state.userUpdate)
+
+  const userId = profileData && profileData._id
+
+  useEffect(() => {
+    if (!loginData) {
+      history.push('/login')
+    } else {
+      if (!profileData) {
+        dispatch(userDetailsAction(loginData._id))
+      } else {
+        setUsername(profileData.username)
+        setEmail(profileData.email)
+      }
+    }
+  }, [loginData, history, dispatch, profileData])
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(userUpdateAction(userId, username, email, password))
+    dispatch(userLogoutAction())
+    history.push('/login')
+  }
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -37,17 +75,20 @@ const Register = ({ location, history }) => {
             <UpdateIcon />
           </Avatar>
           <Typography variant='h4'>Update Profile</Typography>
-          <form className={classes.form} noValidate>
+          {success && <Alert severity='success'>User Updated</Alert>}
+          {error && <Alert severity='error'>{error}</Alert>}
+          {loading && <Loader />}
+          <form className={classes.form} noValidate onSubmit={submitHandler}>
             <TextField
               variant='outlined'
               margin='normal'
               required
               fullWidth
-              id='name'
-              placeholder='Enter new name'
-              name='name'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              id='username'
+              placeholder='Enter new username'
+              name='username'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               InputLabelProps={{
                 classes: {
                   root: classes.cssLabel,
@@ -132,9 +173,7 @@ const Register = ({ location, history }) => {
               color='secondary'
               variant='contained'
               className={classes.submit}
-              onClick={(e) =>
-                !name || !email || !password ? e.preventDefault() : null
-              }
+              onClick={(e) => (!username || !email ? e.preventDefault() : null)}
             >
               Update
             </Button>

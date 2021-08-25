@@ -8,7 +8,12 @@ import {
   updateBlogReducer,
 } from './blogReducers'
 import { fetchCategoriesReducer } from './categoryReducers'
-import { userRegisterReducer, userLoginReducer } from './authReducers'
+import {
+  userRegisterReducer,
+  userLoginReducer,
+  userDetailsReducer,
+  userUpdateReducer,
+} from './authReducers'
 
 const rootReducers = combineReducers({
   fetchAllBlogs: fetchAllBlogsReducer,
@@ -19,6 +24,8 @@ const rootReducers = combineReducers({
   createBlog: createBlogReducer,
   deleteBlog: deleteBlogReducer,
   updateBlog: updateBlogReducer,
+  userDetails: userDetailsReducer,
+  userUpdate: userUpdateReducer,
 })
 
 export default rootReducers

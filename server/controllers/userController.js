@@ -60,7 +60,7 @@ export const userRegister = asyncHandler(async (req, res) => {
 })
 
 // @desc Get user profile
-// @route GET /api/auth/profile
+// @route GET /api/auth/profile/:id
 // @access Private
 
 export const getUserProfile = asyncHandler(async (req, res) => {
