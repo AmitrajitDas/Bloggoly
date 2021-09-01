@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { TextField, Paper, Grid, Button } from '@material-ui/core'
@@ -6,7 +6,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle'
 import { useStyles } from './styles'
 import { createBlogAction } from '../../redux/actions/blogActions'
 
-const CreateBlog = () => {
+const CreateBlog = ({ location }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -17,13 +17,19 @@ const CreateBlog = () => {
   const [category, setCategory] = useState('')
 
   const { loginData } = useSelector((state) => state.userLogin)
+  const { blogDetails } = useSelector((state) => state.createBlog)
 
   const username = loginData && loginData.username
+
+  useEffect(() => {
+    if (blogDetails) {
+      history.push('/')
+    }
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(createBlogAction(username, title, desc, file, category))
-    history.push('/')
   }
 
   return (

@@ -30,9 +30,9 @@ export const fetchAllBlogsReducer = (state = {}, action) => {
 export const fetchSingleBlogReducer = (state = {}, action) => {
   switch (action.type) {
     case FETCH_SINGLE_BLOG_REQUEST:
-      return { loading: true }
+      return { loading: true, ...state }
     case FETCH_SINGLE_BLOG_SUCCESS:
-      return { ...state, loading: false, blog: action.payload }
+      return { loading: false, blog: action.payload }
     case FETCH_SINGLE_BLOG_FAILURE:
       return { loading: false, error: action.payload }
     default:
@@ -45,7 +45,7 @@ export const createBlogReducer = (state = {}, action) => {
     case CREATE_BLOG_REQUEST:
       return { loading: true }
     case CREATE_BLOG_SUCCESS:
-      return { ...state, loading: false, blogDetails: action.payload }
+      return { loading: false, blogDetails: action.payload }
     case CREATE_BLOG_FAILURE:
       return { loading: false, error: action.payload }
     default:
@@ -67,7 +67,7 @@ export const updateBlogReducer = (state = {}, action) => {
     case UPDATE_BLOG_REQUEST:
       return { loading: true }
     case UPDATE_BLOG_SUCCESS:
-      return { ...state, loading: false, updatedBlog: action.payload }
+      return { loading: false, updatedBlog: action.payload }
     case UPDATE_BLOG_FAILURE:
       return { loading: false, error: action.payload }
     default:

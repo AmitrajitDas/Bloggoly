@@ -8,6 +8,8 @@ import Blogs from '../../components/Blogs/Blogs.jsx'
 import Sidebar from '../../components/Sidebar/Sidebar.jsx'
 import { useStyles } from './styles.js'
 import { fetchAllBlogsAction } from '../../redux/actions/blogActions'
+import Loader from '../../utils/Loader/Loader.jsx'
+import Alert from '@material-ui/lab/Alert'
 
 const Home = () => {
   const classes = useStyles()
@@ -27,7 +29,13 @@ const Home = () => {
       <Searchbar />
       <Grid container className={classes.homeContainer}>
         <Grid item md={9}>
-          <Blogs blogs={blogs} loading={loading} error={error} />
+          {loading ? (
+            <Loader />
+          ) : error ? (
+            <Alert severity='error'>{error}</Alert>
+          ) : (
+            <Blogs blogs={blogs} />
+          )}
         </Grid>
         <Grid item md={3}>
           <Sidebar />
